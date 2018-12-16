@@ -1,10 +1,11 @@
 import getpass
 import re
+import sys
 
 import requests
 from bs4 import BeautifulSoup
-
 from coloring import *
+
 
 class Contest:
     base_url = "https://www.stucard.ch"
@@ -57,44 +58,57 @@ def get_contests(session):
         out.append(Contest(title, url, contest_id, session))
     return out
 
+
 def show_tag(file):
     with open(file, "r") as f:
         tag = f.read()
     tag = tag + "{BG_DEFAULT}{FG_DEFAULT}"
     tag = colorize(tag)
     print(tag)
-    return len(tag.split("\n")[0])
+
 
 if __name__ == "__main__":
 
-    width = show_tag("tag.txt")
-    with open("welcome.txt","r") as f:
-        welcome_text = f.read()
+    if len(sys.argv) == 3:
+        email = sys.argv[1]
+        passwd = sys.argv[2]
+        login_session = login(email, passwd)
+        if login_session == None:
+            print(colorize("\n{FG_RED}The provided credentials are invalid.{FG_DEFAULT}"))
+            exit(1)
 
-    welcome_text = colorize(welcome_text)
+    else:
+        show_tag("tag.txt")
 
-    print()
-    print(welcome_text)
-    print()
+        with open("welcome.txt", "r") as f:
+            welcome_text = f.read()
 
-    logged_in = False
-    login_session = None
-
-    while not logged_in:
-        email = input(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} mail address: "))
-        passwd = getpass.getpass(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} password: "))
+        welcome_text = colorize(welcome_text)
 
         print()
+        print(welcome_text)
+        print()
 
-        login_session = login(email, passwd)
+        logged_in = False
+        login_session = None
 
-        # Login successful
-        if login_session != None:
-            logged_in = True
-        else:
-            print(colorize("\n{FG_RED}I'm sorry, but I can't log in with these credentials. Please try again.{FG_DEFAULT}\n"))
 
-    print("Fetching Contests",end="")
+        while not logged_in:
+            email = input(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} mail address: "))
+            passwd = getpass.getpass(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} password: "))
+
+            print()
+
+            login_session = login(email, passwd)
+
+            # Login successful
+            if login_session != None:
+                logged_in = True
+            else:
+                print(colorize(
+                    "\n{FG_RED}I'm sorry, but I can't log in with these credentials. Please try again.{FG_DEFAULT}\n"))
+
+    print("Fetching Contests", end="")
     contests = get_contests(login_session)
     print(colorize(" - {FG_GREEN}Done{FG_DEFAULT}"))
 
