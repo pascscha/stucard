@@ -53,3 +53,11 @@ def colorize(text):
             bg = colors_bg[clr]
         out = "{}\033[{};{}m{}".format(out, bg, fg, txt)
     return out[1:]
+
+
+def show_tag(file):
+    with open(file, "r") as f:
+        tag = f.read()
+    tag = tag + "{BG_DEFAULT}{FG_DEFAULT}"
+    tag = colorize(tag)
+    print(tag)
