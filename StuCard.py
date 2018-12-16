@@ -4,6 +4,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+from coloring import *
 
 class Contest:
     base_url = "https://www.stucard.ch"
@@ -29,7 +30,7 @@ class Contest:
 
 
 def login(email, password):
-    print("Logging in with {}.".format(email))
+    print("Logging in with {}".format(email), end="")
     login_post = {"loginEmail": email,
                   "loginPassword": password}
 
@@ -37,9 +38,8 @@ def login(email, password):
     s = requests.Session()
     r = s.post(url, data=login_post)
     if r.status_code != 200:
-        print("Login unsuccessful")
         return None
-    print("Login successful!")
+    print(colorize(" - {FG_GREEN}Success!{FG_DEFAULT}"))
     return s
 
 
@@ -57,15 +57,34 @@ def get_contests(session):
         out.append(Contest(title, url, contest_id, session))
     return out
 
+def show_tag(file):
+    with open(file, "r") as f:
+        tag = f.read()
+    tag = tag + "{BG_DEFAULT}{FG_DEFAULT}"
+    tag = colorize(tag)
+    print(tag)
+    return len(tag.split("\n")[0])
 
 if __name__ == "__main__":
-    print("Welcome to the Stu Card contest participator!")
+
+    width = show_tag("tag.txt")
+    with open("welcome.txt","r") as f:
+        welcome_text = f.read()
+
+    welcome_text = colorize(welcome_text)
+
+    print()
+    print(welcome_text)
+    print()
+
     logged_in = False
     login_session = None
 
     while not logged_in:
-        email = input("Whats your StuCard mail?")
-        passwd = getpass.getpass("whats your StuCard password?")
+        email = input(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} mail address: "))
+        passwd = getpass.getpass(colorize("Enter your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} password: "))
+
+        print()
 
         login_session = login(email, passwd)
 
@@ -73,15 +92,18 @@ if __name__ == "__main__":
         if login_session != None:
             logged_in = True
         else:
-            print("I'm sorry, but I can't log in with these credentials. Please try again.")
+            print(colorize("\n{FG_RED}I'm sorry, but I can't log in with these credentials. Please try again.{FG_DEFAULT}\n"))
 
+    print("Fetching Contests",end="")
     contests = get_contests(login_session)
+    print(colorize(" - {FG_GREEN}Done{FG_DEFAULT}"))
 
+    print("Check for Contests you haven't participated in yet. (this might take a while)")
     count = 0
     for contest in contests:
         if not contest.has_participated():
             contest.participate()
-            print("Participating in {}".format(contest.name))
+            print("\tParticipating in {}".format(contest.name))
             count += 1
-    print("Participated in {} new contests.".format(count))
-    print("Now participating in a total of {} contests".format(len(contests)))
+    print("\nNewly participating in {} new contests.".format(count))
+    print("You are currently participating in a total of {} contests".format(len(contests)))

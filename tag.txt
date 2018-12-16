@@ -1,0 +1,22 @@
+
+{BG_WHITE}{FG_WHITE}==========================================================================={BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK} {FG_BLUE} __ _         {FG_GREEN}  ___              _ {FG_WHITE}    ___            _            _    {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK} {FG_BLUE}/ _\ |_ _   _ {FG_GREEN} / __\__ _ _ __ __| |{FG_WHITE}   / __\___  _ __ | |_ ___  ___| |_  {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK} {FG_BLUE}\ \| __| | | |{FG_GREEN}/ /  / _` | '__/ _` |{FG_WHITE}  / /  / _ \| '_ \| __/ _ \/ __| __| {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK} {FG_BLUE}_\ \ |_| |_| {FG_GREEN}/ /__| (_| | | | (_| |{FG_WHITE} / /__| (_) | | | | ||  __/\__ \ |_  {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK} {FG_BLUE}\__/\__|\__,_{FG_GREEN}\____/\__,_|_|  \__,_|{FG_WHITE} \____/\___/|_| |_|\__\___||___/\__| {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}                                                                         {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}            ___           _   _      _             _                     {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}           / _ \__ _ _ __| |_(_) ___(_)_ __   __ _| |_ ___  _ __         {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}          / /_)/ _` | '__| __| |/ __| | '_ \ / _` | __/ _ \| '__|        {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}         / ___/ (_| | |  | |_| | (__| | |_) | (_| | || (_) | |           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}         \/    \__,_|_|   \__|_|\___|_| .__/ \__,_|\__\___/|_|           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}                                      |_|                                {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}             _            {FG_RED}                      _     _ _____ {FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}            | |__  _   _  {FG_RED} _ __   __ _ ___  ___| |__ / |___ / {FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}            | '_ \| | | | {FG_RED}| '_ \ / _` / __|/ __| '_ \| | |_ \ {FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}            | |_) | |_| | {FG_RED}| |_) | (_| \__ \ (__| | | | |___) |{FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}            |_.__/ \__, | {FG_RED}| .__/ \__,_|___/\___|_| |_|_|____/ {FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}                   |___/  {FG_RED}|_|                                 {FG_WHITE}           {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}|{BG_BLACK}                                                                         {BG_WHITE}|{BG_DEFAULT}
+{BG_WHITE}==========================================================================={BG_DEFAULT}

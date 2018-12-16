@@ -1,0 +1,3 @@
+Welcome to the {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} Contest Participator by {FG_RED}pasch13{FG_DEFAULT}. ({FG_LIGHTBLUE}https://github.com/pasch13{FG_DEFAULT})
+This program logs in to your {FG_BLUE}Stu{FG_GREEN}Card{FG_DEFAULT} account and then participates on all available contests.
+{FG_DARKGRAY}Use it reasonably ;){FG_DEFAULT}
