@@ -1,6 +1,7 @@
 import getpass
 import re
 import sys
+import os
 
 import requests
 from bs4 import BeautifulSoup
@@ -9,13 +10,19 @@ from coloring import *
 
 class Contest:
     base_url = "https://www.stucard.ch"
-    participation_file = "participated_contests.txt"
+    participation_file = "/".join(__file__.split("/")[:-1])+"/participated_contests.txt"
+
 
     def __init__(self, name, url, contest_id, session):
         self.name = name
         self.url = url
         self.id = contest_id
         self.session = session
+        
+        #Create participation file if it does not exist yet.
+        if not os.path.exists(self.participation_file):
+            with open(self.participation_file, "w+") as f:
+                pass
 
     def participate(self):
         # Participate
@@ -30,10 +37,11 @@ class Contest:
                 f.write(self.id + "\n")
             return True
         else:
+            print("\tTeilnahme nicht erfolgreich")
             return False
 
     def has_participated(self):
-        with open(self.participation_file, "r+") as f:
+        with open(self.participation_file, "r") as f:
             participated = self.id+"\n" in f.readlines()
         return participated
 
@@ -125,4 +133,5 @@ if __name__ == "__main__":
         print("\nNewly participating in {} contests.".format(count))
     else:
         print("Already participating in all contests :)")
+
     print("You are currently participating in a total of {} contests".format(len(contests)))

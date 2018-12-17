@@ -224,7 +224,7 @@ class Outputter:
 
         user_profile = [os.path.expanduser("~")]
         poss_profiles = []
-        timeout = time.time() + .25
+        timeout = time.time() + 5
         while len(user_profile) > 0 and time.time() < timeout:
             path = user_profile[0]
             user_profile = user_profile[1:]
@@ -302,6 +302,7 @@ except:
 if restart:
     with open("lastuse", "w+") as f:
         f.write(str(int(time.time() * 1000)))
-    PrintOpen("python3 coloring.py &", shell=True, stdout=PIPE)
+
+    PrintOpen("python3 {} &".format(__file__), shell=True, stdout=PIPE)
 else:
     Outputter()
